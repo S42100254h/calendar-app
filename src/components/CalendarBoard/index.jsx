@@ -39,7 +39,13 @@ const calendar = [
 ];
 
 const CalendarBoard = () => {
-  return <div>CalendarBoard</div>;
+  return (
+    <ul>
+      {calendar.map(c => (
+        <li>{c}</li>
+      ))}
+    </ul>
+  );
 };
 
 export default CalendarBoard;
