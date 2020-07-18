@@ -1,6 +1,6 @@
 import React from 'react';
 import { GridList } from "@material-ui/core";
-import * as styles from "./styles.css";
+import * as styles from "./style.css";
 
 const calendar = [
   "29",

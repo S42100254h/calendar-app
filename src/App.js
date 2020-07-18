@@ -1,8 +1,11 @@
 import React from 'react';
+import CalendarBoard from './components/CalendarBoard';
 
-function App() {
+const App = () => {
   return (
-    <div>test</div>
+    <div>
+      <CalendarBoard />
+    </div>
   );
 }
 
