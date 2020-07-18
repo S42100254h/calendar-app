@@ -1,6 +1,6 @@
 import React from 'react';
 import { GridList } from "@material-ui/core";
-import * as styles from "./style.css";
+import "./style.css";
 
 const calendar = [
   "29",
@@ -42,11 +42,11 @@ const calendar = [
 
 const CalendarBoard = () => {
   return (
-    <div className={styles.container}>
-      <GridList className={styles.grid} cols={7} cellHeight="auto">
+    <div className="container">
+      <GridList className="grid" cols={7} spacing={0} cellHeight="auto">
         {calendar.map(c => (
           <li>
-            <div className={styles.element}>{c}</div>
+            <div className="element">{c}</div>
           </li>
         ))}
       </GridList>
