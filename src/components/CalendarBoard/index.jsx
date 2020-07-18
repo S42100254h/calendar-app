@@ -1,4 +1,5 @@
 import React from 'react';
+import { GridList, StylesProvider } from "@material-ui/core";
 
 const calendar = [
   "29",
@@ -40,11 +41,15 @@ const calendar = [
 
 const CalendarBoard = () => {
   return (
-    <ul>
-      {calendar.map(c => (
-        <li>{c}</li>
-      ))}
-    </ul>
+    <div className={styles.container}>
+      <GridList className={styles.grid} cols={7} cellHeight="auto">
+        {calendar.map(c => (
+          <li>
+            <div className={styles.element}>{c}</div>
+          </li>
+        ))}
+      </GridList>
+    </div>
   );
 };
 
