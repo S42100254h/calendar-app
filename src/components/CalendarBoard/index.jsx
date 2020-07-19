@@ -16,7 +16,16 @@ const createCalendar = () => {
   // fill(0)で初期化する
   // 1~35の連番の配列を得るため、map関数でインデックス番号を取得する
   // 月の最初の日の値が0になるように配列の要素をシフトさせる
-  return Array(35).fill(0).map((_, i) => i - firstDayIndex);
+  return Array(35)
+    .fill(0)
+    .map((_, i) => {
+      // 月の最初の日からの差分を取得
+      // index値を日付として表示
+      const diffFromFirstDay = i - firstDayIndex;
+      const day = firstDay.add(diffFromFirstDay, "day");
+
+      return day;
+    });
 };
 
 const calendar = createCalendar();
@@ -26,8 +35,8 @@ const CalendarBoard = () => {
     <div className="container">
       <GridList className="grid" cols={7} spacing={0} cellHeight="auto">
         {calendar.map(c => (
-          <li>
-            <div className="element">{c}</div>
+          <li key={c.toISOString()}>
+            <div className="element">{c.format("D")}</div>
           </li>
         ))}
       </GridList>
