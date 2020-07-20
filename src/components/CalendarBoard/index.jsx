@@ -1,11 +1,8 @@
 import React from "react";
 import CalendarElement from "../CalendarElement";
 import { GridList } from "@material-ui/core";
+import createCalendar from "../../services/calendar";
 import "./style.css";
-
-import dayjs from "dayjs";
-import "dayjs/locale/ja";
-dayjs.locale("ja");
 
 const calendar = createCalendar();
 
