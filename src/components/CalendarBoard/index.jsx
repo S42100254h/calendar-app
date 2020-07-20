@@ -1,7 +1,7 @@
 import React from "react";
 import CalendarElement from "../CalendarElement";
 import { GridList } from "@material-ui/core";
-import createCalendar from "../../services/calendar";
+import { createCalendar } from "../../services/calendar";
 import "./style.css";
 
 const calendar = createCalendar();
