@@ -1,12 +1,10 @@
-import React from 'react';
-import CalendarBoard from './components/CalendarBoard';
+import React from "react";
+import CalendarBoard from "./components/CalendarBoard";
 
-const App = () => {
-  return (
+const App = () => (
     <div>
       <CalendarBoard />
     </div>
   );
-}
 
 export default App;
