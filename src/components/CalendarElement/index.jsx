@@ -15,10 +15,15 @@ const CalendarElement = ({ day }) => {
   const compareFormat = "YYYYMMDD";
   const isToday = day.format(compareFormat) === today.format(compareFormat); 
 
+  // 今月以外をグレーダウン
+  const isCurrentMonth = day.month() === today.month();
+  const textColor = isCurrentMonth ? "textPrimary" : "textSecondary";
+
   return (
     <div className="element">
       <Typography
         className="date"
+        color={textColor}
         align="center"
         variant="caption"
         component="div"
