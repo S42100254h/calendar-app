@@ -6,7 +6,7 @@ const firstDay = dayjs().startOf("month");
 // 最初の日の曜日を取得
 const firstDayIndex = firstDay.day();
 
-export const createCalendar = () =>
+export const createCalendar = () => 
 
 // fill(0)で初期化する
 // 1~35の連番の配列を得るため、map関数でインデックス番号を取得する
@@ -22,3 +22,15 @@ export const createCalendar = () =>
 
       return day;
     });
+
+export const isSameDay = (d1, d2) => {
+  const format = "YYYYMMDD";
+  return d1.format(format) === d2.format(format);
+};
+
+export const isSameMonth = (m1, m2) => {
+  const format = "YYYYMM";
+  return m1.format(format) === m2.format(format);
+};
+
+export const isFirstDay = day => day.date() === 1;
