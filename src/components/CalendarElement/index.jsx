@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import { Typography } from "@material-ui/core";
+import dayjs from "dayjs";
 
 // eslint-disable-next-line react/prop-types
 const CalendarElement = ({ day }) => {
@@ -9,15 +10,27 @@ const CalendarElement = ({ day }) => {
   const isFirstDay = day.date() === 1;
   const format = isFirstDay ? "M月D日" : "D";
 
+  // 当日かどうか判断する
+  const today = dayjs();
+  const compareFormat = "YYYYMMDD";
+  const isToday = day.format(compareFormat) === today.format(compareFormat); 
+
+  // 今月以外をグレーダウン
+  const isCurrentMonth = day.month() === today.month();
+  const textColor = isCurrentMonth ? "textPrimary" : "textSecondary";
+
   return (
     <div className="element">
       <Typography
         className="date"
+        color={textColor}
         align="center"
         variant="caption"
         component="div"
       >
+      <span className={isToday ? "today" : ""}>
         {day.format(format)}
+      </span>  
       </Typography>
     </div>
   );
