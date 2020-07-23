@@ -28,9 +28,9 @@ const CalendarElement = ({ day }) => {
         variant="caption"
         component="div"
       >
-      <span className={isToday ? "today" : ""}>
-        {day.format(format)}
-      </span>  
+        <span className={isToday ? "today" : ""}>
+          {day.format(format)}
+        </span>  
       </Typography>
     </div>
   );
