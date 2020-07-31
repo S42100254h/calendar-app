@@ -4,12 +4,11 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "./redux/rootReducer";
-
-const store = createStore(rootReducer);
-
 import dayjs from "dayjs";
 import "dayjs/locale/ja";
 dayjs.locale("ja");
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
