@@ -5,11 +5,11 @@ export const createCalendar = month => {
   const firstDay = getMonth(month);
   // 最初の日の曜日を取得
   const firstDayIndex = firstDay.day();
-  
+
 // fill(0)で初期化する
 // 1~35の連番の配列を得るため、map関数でインデックス番号を取得する
 // 月の最初の日の値が0になるように配列の要素をシフトさせる
-  Array(35)
+  return Array(35)
     .fill(0)
     .map((_, i) => {
 

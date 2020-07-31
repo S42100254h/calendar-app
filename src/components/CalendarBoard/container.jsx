@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mergeProps = stateProps => ({
-  calnedar: createCalendar(stateProps.calendar)
+  calendar: createCalendar(stateProps.calendar)
 });
 
 export default connect(mapStateToProps, null, mergeProps)(CalendarBoard);

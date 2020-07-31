@@ -5,8 +5,7 @@ import "./style.css";
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
 
-const CalendarBoard = (calendar) => {
-  console.log(calendar);
+const CalendarBoard = ({ calendar }) => {
   return (
     <div className="container">
       <GridList className="grid" cols={7} spacing={0} cellHeight="auto">
@@ -22,8 +21,6 @@ const CalendarBoard = (calendar) => {
               {d}
             </Typography>
           </li>
-            
-            
         ))}
         {calendar.map(c => (
           <li key={c.toISOString()}>
