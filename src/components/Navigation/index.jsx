@@ -3,7 +3,7 @@ import { IconButton, Toolbar, Typography, withStyles } from "@material-ui/core";
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from "@material-ui/icons/ArrowForwardIos";
 import DehazeIcon from "@material-ui/icons/Dehaze";
-import DateRangeTwoToneIcon from '@material-ui/icons/DateRangeTwoTone';
+import DateRangeTwoToneIcon from "@material-ui/icons/DateRangeTwoTone";
 
 const StyledToobar = withStyles({
   root: { padding: "0" }

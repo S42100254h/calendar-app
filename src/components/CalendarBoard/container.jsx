@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mergeProps = stateProps => ({
+  month: stateProps.calendar,
   calendar: createCalendar(stateProps.calendar)
 });
 
