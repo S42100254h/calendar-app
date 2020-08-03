@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Navigation from "./index";
 import { getNextMonth, getPreviousMonth } from "../../services/calendar";
-import { calendarSetMonth } from "../../redux/calendar/actions";
+import { calendarSetMonth } from "../../redux/calendar/action";
 
 const mapStateToProps = state => ({ calendar: state.calendar });
 
