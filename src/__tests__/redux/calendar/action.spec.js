@@ -2,13 +2,13 @@ import { CALENDAR_SET_MONTH, calendarSetMonth } from "../../../redux/calendar/ac
 
 describe("action.jsのテスト", () => {
   it("calendarSetMonth関数のテスト", () => {
-    const dummyPayload = "ダミー引数";
-    const action = calendarSetMonth(dummyPayload);
+    const dummy = { month: 8, year: 2020 };
+    const action = calendarSetMonth(dummy);
 
     expect(action).toStrictEqual(
       {
         type: CALENDAR_SET_MONTH,
-        payload: dummyPayload
+        payload: dummy
       }
     );
   });
