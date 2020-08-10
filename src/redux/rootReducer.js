@@ -4,7 +4,7 @@ import addScheduleReducer from "./addSchedule/reducer";
 
 const rootReducer = combineReducers({
   calendar: calendarReducer,
-  addSchedule: addScheduleReducer  
+  addSchedule: addScheduleReducer
 });
 
 export default rootReducer;
