@@ -19,7 +19,7 @@ const Title = withStyles({
 
 const AddScheduleDialog = ({ 
   schedule: {
-    from: { title, location, description },
+    form: { title, location, description },
     isDialogOpen 
     },
     closeDialog,

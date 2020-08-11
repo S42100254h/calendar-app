@@ -8,7 +8,7 @@ const mapDispatchToProps = dispatch => ({
   closeDialog: () => {
     dispatch(addScheduleCloseDialog());
   },
-  setSchedule: () => {
+  setSchedule: (value) => {
     dispatch(addScheduleSetValue(value));
   }
 });
