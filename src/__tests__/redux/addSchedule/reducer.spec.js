@@ -1,5 +1,9 @@
 import addScheduleReducer from "../../../redux/addSchedule/reducer";
-import { addScheduleSetValue } from "../../../redux/addSchedule/action";
+import {
+  addScheduleSetValue,
+  addScheduleOpenDialog,
+  addScheduleCloseDialog
+} from "../../../redux/addSchedule/action";
 import Faker from "faker";
 
 describe("addScheduleReducerのテスト", () => {
@@ -19,10 +23,25 @@ describe("addScheduleReducerのテスト", () => {
 
     const newState = addScheduleReducer(init, action);
     expect(newState.form.title).toStrictEqual(dummy.title);
-    
+
     expect(newState.form.description).toStrictEqual(init.form.description);
     expect(newState.form.date).toStrictEqual(init.form.date);
     expect(newState.form.location).toStrictEqual(init.form.location);
+    expect(newState.isDialogOpen).toStrictEqual(false);
+  });
+
+  it("action.type === ADD_SCHEDULE_OPEN_DIALOG", () => {
+    const action = addScheduleOpenDialog();
+
+    const newState = addScheduleReducer(init, action);
+    expect(newState.isDialogOpen).toStrictEqual(true);
+    expect(newState.form).toStrictEqual(init.form);
+  });
+
+  it("aciton.type === ADD_SCHEDULE_CLOSE_DIALOG", () => {
+    const action = addScheduleCloseDialog();
+
+    const newState = addScheduleReducer(init, action);
     expect(newState.isDialogOpen).toStrictEqual(false);
   });
 });
