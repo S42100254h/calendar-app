@@ -3,7 +3,7 @@ import "./style.css";
 
 const Schedule = ({ schedule }) => {
   return (
-    <div className={schedule}>
+    <div className={"schedule"}>
       {schedule.title}
     </div>
   );
