@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { isSameDay, isSameMonth, isFirstDay, getMonth } from "../../services/calendar";
 import Schedule from "../Schedule/index";
 
-const CalendarElement = ({ day, month, schedules }) => {
+const CalendarElement = ({ day, month, schedules, onClickSchedule }) => {
   const today = dayjs();
 
   // 月の最初にだけ月情報をつける
@@ -34,7 +34,7 @@ const CalendarElement = ({ day, month, schedules }) => {
       </Typography>
       <div className={"schedules"}>
         {schedules.map(e => (
-          <Schedule key={e.id} schedule={e} />
+          <Schedule key={e.id} schedule={e} onClickSchedule={onClickSchedule} />
         ))}
       </div>
     </div>
