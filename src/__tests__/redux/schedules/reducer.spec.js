@@ -32,7 +32,6 @@ describe("schedulesReducerのテスト", () => {
     });
     const action = schedulesAddItem(dummy);
     const newState = schedulesReducer(initState, action);
-    console.log(newState);
 
     expect(newState.items).toStrictEqual([initSchedule, dummy]);
   });
