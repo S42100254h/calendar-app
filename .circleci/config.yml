@@ -46,7 +46,7 @@ jobs:
           command: cd client && npm install
       - run:
           name: execute eslint
-          command: eslint --ext .jsx .
+          command: cd client && npm run lint
 
 workflows:
   version: 2
@@ -54,3 +54,4 @@ workflows:
     jobs:
       - build
       - test
+      - lint

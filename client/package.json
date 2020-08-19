@@ -14,14 +14,15 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
-    "react-scripts": "^3.4.2",
+    "react-scripts": "^3.4.3",
     "redux": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .jsx ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,7 +43,7 @@
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "babel-cli": "^6.26.0",
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "eslint-config-eslint": "^6.0.0",
     "eslint-plugin-react": "^7.20.3",
     "faker": "^4.1.0",
