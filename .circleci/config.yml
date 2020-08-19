@@ -23,7 +23,7 @@ jobs:
       - restore_modules
       - run:
           name: install dependencies
-          command: npm install
+          command: cd client && npm install
       - save_modules
   test:
     executor: node
@@ -32,10 +32,10 @@ jobs:
       - restore_modules
       - run:
           name: install dependencies
-          command: npm install
+          command: cd client && npm install
       - run:
           name: unit test
-          command: npm test
+          command: cd client && npm test
   lint:
     executor: node
     steps:
@@ -43,7 +43,7 @@ jobs:
       - restore_modules
       - run:
           name: install dependencies
-          command: npm install
+          command: cd client && npm install
       - run:
           name: execute eslint
           command: eslint --ext .jsx .
