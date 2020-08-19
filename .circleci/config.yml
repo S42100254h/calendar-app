@@ -7,11 +7,11 @@ commands:
   restore_modules:
     steps:
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "./client/package-lock.json" }}
   save_modules:
     steps:
       - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "./client/package-lock.json" }}
           paths:
             - ./node_modules
 
