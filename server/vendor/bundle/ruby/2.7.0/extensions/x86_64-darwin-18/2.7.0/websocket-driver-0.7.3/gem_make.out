@@ -1,0 +1,15 @@
+current directory: /Users/s42100254h/git/calendar-app/server/vendor/bundle/ruby/2.7.0/gems/websocket-driver-0.7.3/ext/websocket-driver
+/Users/s42100254h/.rbenv/versions/2.7.0/bin/ruby -I /Users/s42100254h/.rbenv/versions/2.7.0/lib/ruby/2.7.0 -r ./siteconf20200821-86589-1snnxnf.rb extconf.rb
+creating Makefile
+
+current directory: /Users/s42100254h/git/calendar-app/server/vendor/bundle/ruby/2.7.0/gems/websocket-driver-0.7.3/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /Users/s42100254h/git/calendar-app/server/vendor/bundle/ruby/2.7.0/gems/websocket-driver-0.7.3/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/s42100254h/git/calendar-app/server/vendor/bundle/ruby/2.7.0/gems/websocket-driver-0.7.3/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20200821-86589-1rdo730
