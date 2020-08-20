@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   openAddScheduleDialog: (d) => {
     dispatch(addScheduleOpenDialog());
-    dispatch(addScheduleSetValue({date: d}))
+    dispatch(addScheduleSetValue({date: d}));
   },
   openCurrentScheduleDialog: (schedule, e) => {
     // 他のイベントが発火するのをキャンセルする
