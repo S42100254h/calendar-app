@@ -7,11 +7,11 @@ commands:
   restore_modules:
     steps:
       - restore_cache:
-          key: dependency-cache-{{ checksum "./client/package-lock.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
   save_modules:
     steps:
       - save_cache:
-          key: dependency-cache-{{ checksum "./client/package-lock.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
 
@@ -23,7 +23,7 @@ jobs:
       - restore_modules
       - run:
           name: install dependencies
-          command: cd client && npm install
+          command: npm install
       - save_modules
   test:
     executor: node
@@ -32,10 +32,10 @@ jobs:
       - restore_modules
       - run:
           name: install dependencies
-          command: cd client && npm install
+          command: npm install
       - run:
           name: unit test
-          command: cd client && npm test
+          command: npm test
   lint:
     executor: node
     steps:
@@ -43,10 +43,10 @@ jobs:
       - restore_modules
       - run:
           name: install dependencies
-          command: cd client && npm install
+          command: npm install
       - run:
           name: execute eslint
-          command: cd client && npm run lint
+          command: eslint --ext .jsx .
 
 workflows:
   version: 2
@@ -54,4 +54,3 @@ workflows:
     jobs:
       - build
       - test
-      - lint
