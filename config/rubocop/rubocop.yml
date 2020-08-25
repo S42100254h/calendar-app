@@ -129,7 +129,7 @@ Metrics/CyclomaticComplexity:
 # * 警告 120文字
 # * 禁止 160文字
 # のイメージ
-Metrics/LineLength:
+Layout/LineLength:
   Max: 160
   Exclude:
     - "db/migrate/*.rb"
@@ -417,3 +417,296 @@ Style/WordArray:
 # 中身を入れ替えて否定外しても良いんだけど、どちらが例外的な処理なのかが分かりづらくなる。
 Style/ZeroLengthPredicate:
   Enabled: false
+
+# ほぼ MultipleExpectations についてはチェックされなくなる設定なので注意。
+# パフォーマンスの問題さえ無ければ 1 example 1 assertion にしておく方が
+# 読みやすいテストになりやすいので、そこはレビューで担保していく必要がある。
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Description: "Checks for a newline after an attribute accessor or a group of them."
+  Enabled: true
+  VersionAdded: "0.83"
+  VersionChanged: "0.84"
+
+Layout/SpaceAroundMethodCallOperator:
+  Description: "Checks method call operators to not have spaces around them."
+  Enabled: true
+  VersionAdded: "0.82"
+
+Lint/DeprecatedOpenSSLConstant:
+  Description: "Algorithmic constants for OpenSSL::Cipher and OpenSSL::Digest deprecated since OpenSSL version 2.2.0. Prefer passing a string instead."
+  Enabled: true
+  VersionAdded: "0.84"
+
+Lint/DuplicateElsifCondition:
+  Description: "This cop checks that there are no repeated conditions used in if 'elsif'."
+  Enabled: true
+  VersionAdded: "0.88"
+
+Lint/MixedRegexpCaptureTypes:
+  Description: "Do not mix named captures and numbered captures in a Regexp literal because numbered capture is ignored if they’re mixed."
+  Enabled: true
+  VersionAdded: "0.85"
+
+Lint/RaiseException:
+  Description: "This cop checks for raise or fail statements which are raising Exception class."
+  Enabled: true
+  Safe: true
+  VersionAdded: "0.81"
+
+Lint/StructNewOverride:
+  Description: "This cop checks unexpected overrides of the Struct built-in methods via Struct.new."
+  Enabled: true
+  VersionAdded: "0.81"
+
+Lint/BinaryOperatorWithIdenticalOperands:
+  Description: "This cop checks for places where binary operator has identical operands."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Lint/DuplicateRescueException:
+  Description: "This cop checks that there are no repeated exceptions used in 'rescue' expressions."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Lint/EmptyConditionalBody:
+  Description: "This cop checks for the presence of if, elsif and unless branches without a body."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Lint/FloatComparison:
+  Description: "This cop checks for the presence of precise comparison of floating point numbers."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Lint/MissingSuper:
+  Description: "This cop checks for the presence of constructors and lifecycle callbacks without calls to super."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Lint/OutOfRangeRegexpRef:
+  Description: "This cops looks for references of Regexp captures that are out of range and thus always returns nil."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Lint/SelfAssignment:
+  Description: "This cop checks for self-assignments."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Lint/TopLevelReturnWithArgument:
+  Description: "This cop checks for top level return with arguments. If there is a top-level return statement with an argument, then the argument is always ignored. This is detected automatically since Ruby 2.7."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Lint/UnreachableLoop:
+  Description: "This cop checks for loops that will have at most one iteration."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Style/AccessorGrouping:
+  Description: "This cop checks for grouping of accessors in class and module bodies."
+  Enabled: true
+  VersionAdded: "0.87"
+
+Style/ArrayCoercion:
+  Description: "This cop enforces the use of Array() instead of explicit Array check or [*var]."
+  Enabled: true
+  VersionAdded: "0.88"
+
+Style/BisectedAttrAccessor:
+  Description: "This cop checks for places where attr_reader and attr_writer for the same method can be combined into single attr_accessor."
+  Enabled: true
+  VersionAdded: "0.87"
+
+Style/CaseLikeIf:
+  Description: "This cop identifies places where if-elsif constructions can be replaced with case-when."
+  Enabled: true
+  VersionAdded: "0.88"
+
+Style/ExponentialNotation:
+  Description: "This cop enforces consistency when using exponential notation for numbers in the code (eg 1.2e4)."
+  Enabled: true
+  VersionAdded: "0.82"
+
+Style/HashAsLastArrayItem:
+  Description: "Checks for presence or absence of braces around hash literal as a last array item depending on configuration."
+  Enabled: true
+  VersionAdded: "0.88"
+
+Style/HashLikeCase:
+  Description: "This cop checks for places where case-when represents a simple 1:1 mapping and can be replaced with a hash look"
+  Enabled: true
+  VersionAdded: "0.88"
+
+Style/RedundantAssignment:
+  Description: "This cop checks for redundant assignment before returning."
+  Enabled: true
+  VersionAdded: "0.87"
+
+Style/RedundantFetchBlock:
+  Description: "This cop identifies places where fetch(key) { value } can be replaced by fetch(key, value)"
+  Enabled: true
+  Safe: false
+  VersionAdded: "0.86"
+
+Style/RedundantFileExtensionInRequire:
+  Description: "This cop checks for the presence of superfluous .rb extension in the filename provided to require and require_relative."
+  Enabled: true
+  VersionAdded: "0.88"
+
+Style/RedundantRegexpCharacterClass:
+  Description: "This cop checks for unnecessary single-element Regexp character classes."
+  Enabled: true
+  VersionAdded: "0.85"
+
+Style/RedundantRegexpEscape:
+  Description: "This cop checks for redundant escapes inside Regexp literals."
+  Enabled: true
+  VersionAdded: "0.85"
+
+Style/SlicingWithRange:
+  Description: "This cop checks that arrays are sliced with endless ranges instead of ary[start..-1] on Ruby 2.6+."
+  Enabled: true
+  Safe: false
+  VersionAdded: "0.83"
+
+Style/ExplicitBlockArgument:
+  Description: "This cop enforces the use of explicit block argument to avoid writing block literal that just passes its arguments to another block."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Style/GlobalStdStream:
+  Description: "This cop enforces the use of $stdout/$stderr/$stdin instead of STDOUT/STDERR/STDIN. STDOUT/STDERR/STDIN are constants, and while you can actually reassign (possibly to redirect some stream) constants in Ruby, you’ll get an interpreter warning if you do so."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Style/OptionalBooleanParameter:
+  Description: "This cop checks for places where keyword arguments can be used instead of boolean arguments when defining methods."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Style/SingleArgumentDig:
+  Description: "Sometimes using dig method ends up with just a single argument. In such cases, dig should be replaced with []."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Style/StringConcatenation:
+  Description: "This cop checks for places where string concatenation can be replaced with string interpolation."
+  Enabled: true
+  VersionAdded: "0.89"
+
+Performance/AncestorsInclude:
+  Description: "This cop is used to identify usages of ancestors.include? and change them to use ⇐ instead."
+  Enabled: true
+  Safe: false
+  VersionAdded: "1.7"
+
+Performance/BigDecimalWithNumericArgument:
+  Description: "This cop identifies places where numeric argument to BigDecimal should be converted to string. Initializing from String is faster than from Numeric for BigDecimal."
+  Enabled: true
+  VersionAdded: "1.7"
+
+Performance/RedundantSortBlock:
+  Description: "This cop identifies places where sort { |a, b| a <⇒ b } can be replaced with sort."
+  Enabled: true
+  VersionAdded: "1.7"
+
+Performance/RedundantStringChars:
+  Description: "This cop checks for redundant String#chars."
+  Enabled: true
+  VersionAdded: "1.7"
+
+Performance/ReverseFirst:
+  Description: "This cop identifies places where reverse.first(n) and reverse.first can be replaced by last(n).reverse and last."
+  Enabled: true
+  VersionAdded: "1.7"
+
+Performance/SortReverse:
+  Description: "This cop identifies places where sort { |a, b| b <⇒ a } can be replaced by a faster sort.reverse."
+  Enabled: true
+  VersionAdded: "1.7"
+
+Performance/Squeeze:
+  Description: "This cop identifies places where gsub(/a+/, 'a') and gsub!(/a+/, 'a') can be replaced by squeeze('a') and squeeze!('a')."
+  Enabled: true
+  VersionAdded: "1.7"
+
+Performance/StringInclude:
+  Description: "This cop identifies unnecessary use of a regex where String#include? would suffice."
+  Enabled: true
+  AutoCorrect: true
+  VersionAdded: "1.7"
+
+Rails/ActiveRecordCallbacksOrder:
+  Description: "This cop checks that Active Record callbacks are declared in the order in which they will be executed."
+  Enabled: true
+  VersionAdded: "2.7"
+
+Rails/FindById:
+  Description: "This cop enforces that ActiveRecord#find is used instead of where.take!, find_by!, and find_by_id! to retrieve a single record by primary key when you expect it to be found."
+  Enabled: true
+  VersionAdded: "2.7"
+
+Rails/Inquiry:
+  Description: "This cop checks that Active Support’s inquiry method is not used."
+  Enabled: true
+  VersionAdded: "2.7"
+
+Rails/MailerName:
+  Description: "This cop enforces that mailer names end with Mailer suffix."
+  Enabled: true
+  VersionAdded: "2.7"
+
+Rails/MatchRoute:
+  Description: "This cop identifies places where defining routes with match can be replaced with a specific HTTP method."
+  Enabled: true
+  VersionAdded: "2.7"
+
+Rails/NegateInclude:
+  Description: "This cop enforces the use of collection.exclude?(obj) over !collection.include?(obj)."
+  Enabled: true
+  VersionAdded: "2.7"
+
+Rails/Pluck:
+  Description: "This cop enforces the use of pluck over map."
+  Enabled: true
+  VersionAdded: "2.7"
+
+Rails/PluckInWhere:
+  Description: "This cop identifies places where pluck is used in where query methods and can be replaced with select."
+  Enabled: true
+  VersionAdded: "2.7"
+
+Rails/RenderInline:
+  Description: "This cop looks for inline rendering within controller actions."
+  Enabled: true
+  VersionAdded: "2.7"
+
+Rails/RenderPlainText:
+  Description: "This cop identifies places where render text: can be replaced with render plain:."
+  Enabled: true
+  ContentTypeCompatibility: true
+  VersionAdded: "2.7"
+
+Rails/ShortI18n:
+  Description: "This cop checks for consistent uses of request.referer or request.referrer, depending on the cop’s configuration."
+  Enabled: true
+  EnforcedStyle: "conservative"
+  VersionAdded: "2.7"
+
+Rails/WhereExists:
+  Description: "This cop enforces the use of exists?(…​) over where(…​).exists?."
+  Enabled: true
+  VersionAdded: "2.7"
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
