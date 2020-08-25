@@ -23,23 +23,35 @@ jobs:
       - restore_modules
       - run:
           name: install dependencies
-          working_directory: client
-          command: npm install
+          command: cd client && npm install
       - save_modules
-
+  test:
+    executor: node
+    steps:
+      - checkout
+      - restore_modules
+      - run:
+          name: install dependencies
+          command: cd client && npm install
       - run:
           name: unit test
-          working_directory: client
-          command: npm test
-
+          command: cd client && npm test
+  lint:
+    executor: node
+    steps:
+      - checkout
+      - restore_modules
+      - run:
+          name: install dependencies
+          command: cd client && npm install
       - run:
           name: execute eslint
-          working_directory: client
-          command: npm run lint
+          command: cd client && npm run lint
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
-
+      - test
+      - lint
