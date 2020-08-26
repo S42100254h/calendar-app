@@ -25,33 +25,41 @@ jobs:
           name: install dependencies
           command: cd client && npm install
       - save_modules
-  test:
+  jest:
     executor: node
     steps:
-      - checkout
       - restore_modules
       - run:
           name: install dependencies
-          command: cd client && npm install
+          working_directory: client
+          command: npm install
       - run:
           name: unit test
-          command: cd client && npm test
-  lint:
+          command: npm test
+  eslint:
     executor: node
     steps:
-      - checkout
       - restore_modules
       - run:
           name: install dependencies
-          command: cd client && npm install
+          working_directory: client
+          command: npm install
       - run:
           name: execute eslint
-          command: cd client && npm run lint
+          working_directory: client
+          command: npm run lint
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
-      - test
-      - lint
+      - jest
+        requires:
+          - build
+      - eslint
+        requires:
+          - build
+
+
+# 今後mysqlを用いる場合は、database.yml.ciも実装する必要がある
