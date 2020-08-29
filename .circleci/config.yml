@@ -3,6 +3,7 @@ executors:
   node:
     docker:
       - image: circleci/node:12
+    working_directory: ~/calendar_app
   rails:
     docker:
       - image: circleci/ruby:2.6.2-node
@@ -21,13 +22,11 @@ commands:
   restore_modules_client:
     steps:
       - restore_cache:
-          key: dependency-cache-{{ checksum "./client/package-lock.json" }}
-  save_modules_client:
-    steps:
-      - save_cache:
-          key: dependency-cache-{{ checksum "./client/package-lock.json" }}
-          paths:
-            - ./node_modules
+          key: v4-calendar_app-{{ .Environment.CIRCLE_SHA2 }}
+      - restore_cache:
+          keys: 
+            - v3-dependencies-{{ checksum "client/package-lock.json" }}
+            - v3-dependencies
   install_bundler:
     steps:
       - run: gem install bundler -v 2.1.4
@@ -36,19 +35,30 @@ commands:
       - restore_cache:
           key: v1-calendar_app-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: v2-dependencies-{{ checksum "Gemfile.lock" }}
+          keys: 
+            - v2-dependencies-{{ checksum "Gemfile.lock" }}
+            - v2-dependencies
 
 jobs:
-  build:
+  fetch_source_code_client:
     executor: node
     steps:
       - checkout
+      - save_cache:
+          key: v4-calendar_app-{{ .Environment.CIRCLE_SHA2 }}
+          paths:
+            - ~/calendar_app
+  npm_dependencies:
+    executor: node
+    steps:
       - restore_modules_client
       - run:
-          name: install dependencies
-          working_directory: client
+          name: Npm Install Dependencies
           command: npm install
-      - save_modules_client
+      - save_cache:
+          key: v3-dependencies-{{ checksum "client/package-lock.json" }}
+          paths:
+            - client/node_modules
   jest:
     executor: node
     steps:
@@ -91,7 +101,7 @@ jobs:
       - install_bundler
       - run:
           name: Bundle Install Dependencies
-          command: bundle install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           key: v2-dependencies-{{ checksum "Gemfile.lock" }}
           paths:
@@ -123,7 +133,6 @@ jobs:
             bundle exec rspec --require rails_helper \
                               --color \
                               --format progress \
-                              --format RspecJunitFormatter \
                               --out ~/rspec/rspec.xml
       # collect reports
       - store_test_results:
@@ -145,13 +154,16 @@ workflows:
   version: 2
   build_and_test_client:
     jobs:
-      - build
+      - fetch_source_code_client
+      - npm_dependencies:
+          requires:
+            - fetch_source_code_client
       - jest:
           requires:
-            - build
+            - npm_dependencies
       - eslint:
           requires:
-            - build
+            - npm_dependencies
   build_and_test_server:
     jobs:
       - fetch_source_code
