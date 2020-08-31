@@ -140,15 +140,6 @@ jobs:
       - store_artifacts:
           path: ~/tmp/test-results
           destination: test-results
-  rubocop:
-    executor:
-      name: rails
-    steps:
-      - restore_modules_server
-      - install_bundler
-      - run:
-          name: Execute rubocop
-          command: bundle exec rubocop
 
 workflows:
   version: 2
@@ -173,6 +164,4 @@ workflows:
       - rspec:
           requires:
             - bundle_dependencies
-      - rubocop:
-          requires:
-            - bundle_dependencies
+
