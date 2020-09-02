@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Api::V1::Schedules", type: :request do
   describe "GET /api/v1/schedules" do
@@ -13,7 +13,7 @@ RSpec.describe "Api::V1::Schedules", type: :request do
       res = JSON.parse(response.body)
       expect(res.length).to eq 2
       expect(res[0].keys).to eq ["id", "title", "location", "description", "date", "user"]
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 end
