@@ -1,4 +1,6 @@
 class Api::V1::SchedulesController < Api::V1::ApiController
+  before_action :set_schedule, only: [:update, :destroy]
+
   def create
     schedule = current_user.schedules.create!(schedule_params)
     render json: schedule
@@ -15,19 +17,21 @@ class Api::V1::SchedulesController < Api::V1::ApiController
   end
 
   def update
-    schedule = Schedule.find(params[:id])
-    schedule.update!(user_params)
-    render json: schedule
+    @schedule.update!(schedule_params)
+    render json: @schedule
   end
 
   def destroy
-    schedule = Schedule.find(params[:id])
-    schedule.destroy!
-    render json: schedule
+    @schedule.destroy!
+    render json: @schedule
   end
 
   private
     def schedule_params
       params.require(:schedule).permit(:title, :location, :description, :date)
+    end
+
+    def set_schedule
+      @schedule = current_user.schedules.find(params[:id])
     end
 end
