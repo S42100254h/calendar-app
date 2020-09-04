@@ -60,4 +60,25 @@ RSpec.describe "Api::V1::Schedules", type: :request do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe "PATCH /api/v1/schedules/:id" do
+    subject { patch(api_v1_schedule_path(schedule_id), params: params)}
+
+    before do
+      allow_any_instance_of(Api::V1::ApiController).to receive(:current_user).and_return(current_user)
+    end
+
+    let(:params) {{ schedule: { description: Faker::Lorem.paragraph }}}
+    let(:schedule) { create(:schedule, user: current_user) }
+    let(:schedule_id) { schedule.id }
+    let(:current_user) { create(:user) }
+
+    it "current_userに紐づけられたスケジュールを修正できる" do
+      expect { subject }.to change { Schedule.find(schedule.id).description }.from(schedule.description).to(params[:schedule][:description]) &
+                            not_change { Schedule.find(schedule.id).title } &
+                            not_change { Schedule.find(schedule.id).location } &
+                            not_change { Schedule.find(schedule.id).date }
+      expect(response).to have_http_status(:ok)
+    end
+  end
 end
