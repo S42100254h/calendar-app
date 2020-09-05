@@ -18,10 +18,10 @@ RSpec.describe "Api::V1::Schedules", type: :request do
   end
 
   describe "GET /api/v1/schedules/:id" do
-    subject { get(api_v1_schedule_path(schedule_id))}
+    subject { get(api_v1_schedule_path(schedule_id)) }
 
     context "指定したidのスケジュールが存在する場合" do
-      let(:schedule) { create(:schedule, id: 1)}
+      let(:schedule) { create(:schedule, id: 1) }
       let(:schedule_id) { schedule.id }
 
       it "スケジュールを取得できる" do
@@ -46,13 +46,13 @@ RSpec.describe "Api::V1::Schedules", type: :request do
   end
 
   describe "POST /api/v1/schedules" do
-    subject { post(api_v1_schedules_path, params: params)}
+    subject { post(api_v1_schedules_path, params: params) }
 
     before do
       allow_any_instance_of(Api::V1::ApiController).to receive(:current_user).and_return(current_user)
     end
 
-    let(:params) {{ schedule: attributes_for(:schedule) }}
+    let(:params) { { schedule: attributes_for(:schedule) } }
     let(:current_user) { create(:user) }
 
     it "current_userに紐づけられたスケジュールが作成される" do
@@ -62,13 +62,13 @@ RSpec.describe "Api::V1::Schedules", type: :request do
   end
 
   describe "PATCH /api/v1/schedules/:id" do
-    subject { patch(api_v1_schedule_path(schedule_id), params: params)}
+    subject { patch(api_v1_schedule_path(schedule_id), params: params) }
 
     before do
       allow_any_instance_of(Api::V1::ApiController).to receive(:current_user).and_return(current_user)
     end
 
-    let(:params) {{ schedule: { description: Faker::Lorem.paragraph }}}
+    let(:params) { { schedule: { description: Faker::Lorem.paragraph } } }
     let(:schedule) { create(:schedule, user: current_user) }
     let(:schedule_id) { schedule.id }
     let(:current_user) { create(:user) }
@@ -83,15 +83,15 @@ RSpec.describe "Api::V1::Schedules", type: :request do
   end
 
   describe "DELETE /api/v1/scheudles/:id" do
-    subject { delete(api_v1_schedule_path(schedule_id))}
-    
+    subject { delete(api_v1_schedule_path(schedule_id)) }
+
     before do
       allow_any_instance_of(Api::V1::ApiController).to receive(:current_user).and_return(current_user)
     end
 
-    let!(:schedule) {create(:schedule, user: current_user)}
+    let!(:schedule) { create(:schedule, user: current_user) }
     let(:schedule_id) { schedule.id }
-    let(:current_user) { create(:user)}
+    let(:current_user) { create(:user) }
 
     it "current_userに紐づけられたスケジュールを削除できる" do
       expect { subject }.to change { current_user.schedules.count }.by(-1)

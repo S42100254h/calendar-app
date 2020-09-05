@@ -27,6 +27,7 @@ class Api::V1::SchedulesController < Api::V1::ApiController
   end
 
   private
+
     def schedule_params
       params.require(:schedule).permit(:title, :location, :description, :date)
     end
