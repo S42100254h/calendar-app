@@ -81,4 +81,21 @@ RSpec.describe "Api::V1::Schedules", type: :request do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe "DELETE /api/v1/scheudles/:id" do
+    subject { delete(api_v1_schedule_path(schedule_id))}
+    
+    before do
+      allow_any_instance_of(Api::V1::ApiController).to receive(:current_user).and_return(current_user)
+    end
+
+    let!(:schedule) {create(:schedule, user: current_user)}
+    let(:schedule_id) { schedule.id }
+    let(:current_user) { create(:user)}
+
+    it "current_userに紐づけられたスケジュールを削除できる" do
+      expect { subject }.to change { current_user.schedules.count }.by(-1)
+      expect(response).to have_http_status(:ok)
+    end
+  end
 end
