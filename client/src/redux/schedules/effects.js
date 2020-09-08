@@ -1,5 +1,9 @@
-import { schedulesSetLoading, schedulesFetchItem } from "./action";
-import { get } from "../../services/api";
+import {
+  schedulesSetLoading,
+  schedulesFetchItem,
+  schedulesAddItem
+} from "./action";
+import { get, post } from "../../services/api";
 import { formatSchedule } from "../../services/schedule";
 
 export const asyncSchedulesFetchItem = ({ month, year }) => async dispatch => {
@@ -10,4 +14,14 @@ export const asyncSchedulesFetchItem = ({ month, year }) => async dispatch => {
   const formatedSchedule = result.map(r => formatSchedule(r));
 
   dispatch(schedulesFetchItem(formatedSchedule));
+};
+
+export const asyncSchedulesAddItem = schedule => async dispatch => {
+  dispatch(schedulesSetLoading());
+
+  const body = { ...schedule, date: schedule.date.toISOString() };
+  const result = await post("schedules", body);
+
+  const newSchedule = formatSchedule(result);
+  dispatch(schedulesAddItem(newSchedule));
 };
