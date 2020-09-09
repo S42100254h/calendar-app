@@ -7,7 +7,8 @@ import {
   Button,
   Input,
   Grid,
-  IconButton
+  IconButton,
+  Typography
 } from "@material-ui/core";
 
 import {
@@ -24,18 +25,21 @@ import { styles } from "@material-ui/pickers/views/Calendar/Calendar";
 
 const spacer = { margin: "4px 0"};
 const Title = withStyles({
-  root: { marginBottom: 32, fontSize: 22 }
+  root: { fontSize: 22 }
 })(Input);
 
 const AddScheduleDialog = ({ 
   schedule: {
     form: { title, location, description, date },
-    isDialogOpen 
+    isDialogOpen,
+    isStartEdit
   },
   closeDialog,
   setSchedule,
-  saveSchedule
+  saveSchedule,
+  setIsEditStart
 }) => {
+  const isTitleInvalid = !title && isStartEdit;
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
       <DialogActions>
