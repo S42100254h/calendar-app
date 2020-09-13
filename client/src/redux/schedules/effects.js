@@ -2,7 +2,8 @@ import {
   schedulesSetLoading,
   schedulesFetchItem,
   schedulesAddItem,
-  schedulesDeleteItem
+  schedulesDeleteItem,
+  schedulesAsyncFailure
 } from "./action";
 import { get, post, deleteRequest } from "../../services/api";
 import { formatSchedule } from "../../services/schedule";
@@ -16,6 +17,7 @@ export const asyncSchedulesFetchItem = ({ month, year }) => async dispatch => {
     dispatch(schedulesFetchItem(formatedSchedule));
   } catch(error) {
     console.error(error);
+    dispatch(schedulesAsyncFailure(error.message));
   }
 };
 
@@ -29,6 +31,7 @@ export const asyncSchedulesAddItem = schedule => async dispatch => {
     dispatch(schedulesAddItem(newSchedule));
   } catch(error) {
     console.error(error);
+    dispatch(schedulesAsyncFailure(error.message));
   }
 };
 
@@ -43,5 +46,6 @@ export const asyncSchedulesDeleteItem = id => async(dispatch, getState) => {
     dispatch(schedulesDeleteItem(newSchedules));
   } catch(error) {
     console.error(error);
+    dispatch(schedulesAsyncFailure(error.message));
   }
 };
